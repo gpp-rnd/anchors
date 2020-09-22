@@ -7,7 +7,7 @@ Welcome to anchors's documentation!
 
    readme
    installation
-   usage
+   example
    modules
    contributing
    authors
