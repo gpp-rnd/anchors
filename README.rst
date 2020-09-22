@@ -26,14 +26,14 @@ Tutorial
 --------
 To install::
 
-    $ pip install anchor_score
+    $ pip install anchors
 
 Basic Usage
 ^^^^^^^^^^^
 .. code:: python
 
     import pandas as pd
-    from anchor_score import get_guide_residuals, get_gene_residuals
+    from anchors import get_guide_residuals, get_gene_residuals
     lfc_df = pd.read_csv('https://raw.githubusercontent.com/PeterDeWeirdt/anchor_screen_parp_lfcs/master/parp_example_lfcs.csv')
     refernce_condition_df = pd.read_csv('https://raw.githubusercontent.com/PeterDeWeirdt/anchor_screen_parp_lfcs/master/parp_example_mapping.csv')
     guide_residuals, model_info, model_fit_plots = get_guide_residuals(lfc_df, refernce_condition_df)
