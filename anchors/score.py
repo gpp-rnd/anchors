@@ -184,15 +184,13 @@ def get_condition_residuals(condition_x, condition_y, lfc_df, folds, degrees):
     matplotlib.figure.Figure
         Plot of spline fit
     """
-    x_data = lfc_df[condition_x]
+    x_data = lfc_df[condition_x] # series type
     y_data = lfc_df[condition_y]
-    x_data = x_data.rename('x', axis=1)
-    y_data = y_data.rename('y', axis=1)
-    model_df = pd.concat([x_data, y_data], axis=1)
+    model_df = pd.DataFrame({'x': x_data, 'y':y_data}) # columns with x and y values with 'x' and 'y' headers
     optimal_degree = find_optimal_degree(model_df, degrees, folds, 'x', 'y')
     model_fit = fit_natural_cubic_spline(model_df, optimal_degree, 'x', 'y')
     model_info = {'model': 'spline', 'deg_fdm': optimal_degree, 'const': model_fit.params.xs('Intercept')}
-    predictions = model_fit.predict(x_data)
+    predictions = model_fit.predict(model_df['x'])
     residuals = y_data - predictions
     fig, _ = plot_model_fit(model_df, predictions, 'x', 'y', condition_x, condition_y)
     return residuals, model_info, fig
